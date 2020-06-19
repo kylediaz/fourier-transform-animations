@@ -22,12 +22,12 @@ low_pass_filter = np.vectorize(lambda n: n if n.real ** 2 + n.imag ** 2 > thresh
 
 
 def update(i):
-    f_transform = np.fft.fft2(img)
+    f_transform = np.fft.rfft2(img)
     f_transform = high_pass_filter(f_transform)
     global threshold
     threshold += 10 ** (.1 * (i + 10))
 
-    inverse_f_transform = np.fft.ifft2(f_transform).astype(float)
+    inverse_f_transform = np.fft.irfft2(f_transform)
 
     filtered_ax.imshow(inverse_f_transform, **image_ax_args)
     return filtered_ax,
