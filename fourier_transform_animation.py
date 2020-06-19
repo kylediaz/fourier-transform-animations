@@ -1,22 +1,10 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-import matplotlib.image as mpimg
 import numpy as np
-import sys
-from os import path
-
-if len(sys.argv) > 1:
-    image_path = sys.argv[1]
-else:
-    image_path = ''
-while not path.exists(image_path):
-    image_path = input('Input image path > ')
-img = mpimg.imread(image_path)
+from common import image_input, rgb2gray
 
 
-def rgb2gray(rgb):
-    return np.dot(rgb[..., :3], [0.299, 0.587, 0.144])
-
+img = image_input()
 
 img = rgb2gray(img)
 
