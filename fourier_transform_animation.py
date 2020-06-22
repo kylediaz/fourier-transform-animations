@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
-from common import image_input, rgb2gray
+from common import image_input, rgb_to_gray
 
 
 img = image_input()
 
-img = rgb2gray(img)
+img = rgb_to_gray(img)
 
 fig, (original_ax, filtered_ax) = plt.subplots(1, 2)
 fig.patch.set_facecolor('xkcd:black')
