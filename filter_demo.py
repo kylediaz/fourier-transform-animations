@@ -93,7 +93,7 @@ def init():
 
 def animate(i):
     print(i)
-    i = i ** 2
+    i = int(i ** 2)
 
     global high_pass_magnitude_spectrum, high_pass_image
     global low_pass_magnitude_spectrum, low_pass_image
@@ -111,6 +111,6 @@ def animate(i):
     return low_pass_image_ax, high_pass_image_ax, low_pass_spectrum_ax, high_pass_spectrum_ax
 
 
-ani = animation.FuncAnimation(fig, animate, init_func=init,frames=int(max(*img.shape) ** .5 + 1), interval=100, blit=True)
+ani = animation.FuncAnimation(fig, animate, init_func=init, frames=int(max(*img.shape) ** .5 + 1), interval=100, blit=True)
 
 plt.show()
