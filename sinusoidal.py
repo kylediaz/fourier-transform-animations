@@ -1,8 +1,13 @@
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import animation
 
-x = np.linspace(-6, 6, 30)
-y = np.linspace(-6, 6, 30)
+
+plt.style.use('dark_background')
+
+
+x = np.linspace(-6, 6, 100)
+y = np.linspace(-6, 6, 2)
 
 X, Y = np.meshgrid(x, y)
 Z = np.sin(X)
@@ -15,18 +20,19 @@ mesh_args = dict(rstride=1, cstride=1, cmap='gray', edgecolor='none')
 mesh = ax.plot_surface(X, Y, Z, **mesh_args)
 
 
-axis_label_args = dict(color='white')
-ax.set_xlabel('x', **axis_label_args)
-ax.set_ylabel('y', **axis_label_args)
-ax.set_zlabel('z', **axis_label_args)
-ax.set_facecolor('xkcd:black')
-for axis in 'x', 'y', 'z':
-    ax.tick_params(axis=axis, colors='white')
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('Intensity')
 
 ax.set_zticks([-1, 0, 1])
-
 ax.set_zlim(-1.5, 1.5)
 
-fig.patch.set_facecolor('black')
+
+def animate(i):
+    ax.view_init(elev=0, azim=(i - 45) / 2)
+    return ax,
+
+
+ani = animation.FuncAnimation(fig, animate, frames=720, interval=20, blit=True)
 
 plt.show()
